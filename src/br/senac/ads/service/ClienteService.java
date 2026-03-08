@@ -12,7 +12,7 @@ public class ClienteService {
 		Cliente c = new Cliente(id, nome, telefone);
 		clientes.add(c);
 		
-		System.out.println("Cliente adicionado com sucesso!");
+		System.out.println("Cliente adicionado com sucesso!!!");
 		
 	}
 	
