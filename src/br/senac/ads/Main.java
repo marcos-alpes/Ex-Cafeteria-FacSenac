@@ -2,6 +2,7 @@ package br.senac.ads;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import br.senac.ads.service.ClienteService;
 
 public class Main {
 
@@ -14,6 +15,7 @@ public class Main {
         // pelo usuário no terminal.
 
         Scanner scanner = new Scanner(System.in);
+        ClienteService clienteService = new ClienteService();
 
         // ---------------------------------------------------
         // VARIÁVEL QUE ARMAZENA A OPÇÃO DO MENU
@@ -50,11 +52,76 @@ public class Main {
 		
 		            switch (opcao) {
 		
-		                case 1:
-		                    // Menu de clientes
-		                    // Aqui futuramente serão feitas chamadas
-		                    // para as funções relacionadas a clientes
-		                    break;
+		            case 1:
+
+		                int opcaoCliente = -1;
+
+		                while (opcaoCliente != 0) {
+
+		                    System.out.println("\n===== MENU CLIENTES =====");
+		                    System.out.println("1 - Adicionar Cliente");
+		                    System.out.println("2 - Listar Clientes");
+		                    System.out.println("3 - Buscar Cliente por ID");
+		                    System.out.println("4 - Remover Cliente por ID");
+		                    System.out.println("0 - Voltar");
+		                    System.out.print("Escolha uma opção: ");
+
+		                    opcaoCliente = scanner.nextInt();
+		                    scanner.nextLine();
+
+		                    switch (opcaoCliente) {
+
+		                        case 1:
+
+		                            System.out.print("Digite o ID do cliente: ");
+		                            int id = scanner.nextInt();
+		                            scanner.nextLine();
+
+		                            System.out.print("Digite o nome do cliente: ");
+		                            String nome = scanner.nextLine();
+
+		                            System.out.print("Digite o telefone do cliente: ");
+		                            String telefone = scanner.nextLine();
+
+		                            clienteService.adicionarCliente(id, nome, telefone);
+
+		                            break;
+
+		                        case 2:
+
+		                            clienteService.listarClientes();
+
+		                            break;
+
+		                        case 3:
+
+		                            System.out.print("Digite o ID do cliente: ");
+		                            int idBusca = scanner.nextInt();
+
+		                            clienteService.buscarClientePorId(idBusca);
+
+		                            break;
+
+		                        case 4:
+
+		                            System.out.print("Digite o ID do cliente: ");
+		                            int idRemover = scanner.nextInt();
+
+		                            clienteService.removerClientePorId(idRemover);
+
+		                            break;
+
+		                        case 0:
+
+		                            break;
+
+		                        default:
+
+		                            System.out.println("Opção inválida!");
+		                    }
+		                }
+
+		                break;
 		
 		                case 2:
 		                    // Menu de produtos
