@@ -3,6 +3,8 @@ package br.senac.ads;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import br.senac.ads.service.ProdutoService;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -14,6 +16,7 @@ public class Main {
         // pelo usuário no terminal.
 
         Scanner scanner = new Scanner(System.in);
+        ProdutoService produtoService = new ProdutoService();
 
         // ---------------------------------------------------
         // VARIÁVEL QUE ARMAZENA A OPÇÃO DO MENU
@@ -57,10 +60,79 @@ public class Main {
 		                    break;
 		
 		                case 2:
-		                    // Menu de produtos
-		                    // Aqui futuramente serão feitas chamadas
-		                    // para as funções relacionadas a produtos
-		                    break;
+
+			                int opcaoProduto = -1;
+
+			                while (opcaoProduto != 0) {
+
+			                    System.out.println("\n===== MENU PRODUTOS =====");
+			                    System.out.println("1 - Cadastrar Produto");
+			                    System.out.println("2 - Listar Produtos");
+			                    System.out.println("3 - Atualizar Preço");
+			                    System.out.println("4 - Remover Produto");
+			                    System.out.println("0 - Voltar");
+			                    System.out.print("Escolha uma opção: ");
+
+			                    opcaoProduto = scanner.nextInt();
+			                    scanner.nextLine();
+
+			                    switch (opcaoProduto) {
+
+			                        case 1:
+
+			                            System.out.print("Digite o ID do produto: ");
+			                            int idProduto = scanner.nextInt();
+			                            scanner.nextLine();
+
+			                            System.out.print("Digite o nome do produto: ");
+			                            String nomeProduto = scanner.nextLine();
+
+			                            System.out.print("Digite o preço do produto: ");
+			                            double precoProduto = scanner.nextDouble();
+
+			                            produtoService.cadastrarProduto(idProduto, nomeProduto, precoProduto);
+
+			                            break;
+
+			                        case 2:
+
+			                        	System.out.println("\nLista de produtos:");
+			                        	produtoService.listarProdutos();
+
+			                            break;
+
+			                        case 3:
+
+			                        	System.out.print("Digite o ID do produto: ");
+			                            int idAtualizar = scanner.nextInt();
+
+			                            System.out.print("Digite o novo preço: ");
+			                            double novoPreco = scanner.nextDouble();
+
+			                            produtoService.atualizarPreco(idAtualizar, novoPreco);
+
+			                            break;
+
+			                        case 4:
+
+			                        	System.out.print("Digite o ID do produto que deseja remover: ");
+			                            int idRemover = scanner.nextInt();
+
+			                            produtoService.removerProduto(idRemover);
+
+			                            break;
+
+			                        case 0:
+
+			                            break;
+
+			                        default:
+
+			                            System.out.println("Opção inválida!");
+			                    }
+			                }
+
+			                break;
 		
 		                case 3:
 		                    // Menu de pedidos
