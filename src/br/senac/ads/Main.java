@@ -2,7 +2,9 @@ package br.senac.ads;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
 import br.senac.ads.service.ClienteService;
+import br.senac.ads.service.ItemPedidoService;
 import br.senac.ads.service.ProdutoService;
 
 public class Main {
@@ -18,6 +20,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         ClienteService clienteService = new ClienteService();
         ProdutoService produtoService = new ProdutoService();
+        ItemPedidoService itemService = new ItemPedidoService(produtoService);
 
         // ---------------------------------------------------
         // VARIÁVEL QUE ARMAZENA A OPÇÃO DO MENU
@@ -207,9 +210,67 @@ public class Main {
 		                    break;
 		
 		                case 4:
-		                    // Menu de itens do pedido
-		                    // Aqui futuramente serão feitas chamadas
-		                    // para as funções relacionadas aos itens
+
+		                    int opcaoItem = -1;
+
+		                    while (opcaoItem != 0) {
+
+		                        System.out.println("\n===== MENU ITENS DO PEDIDO =====");
+		                        System.out.println("1 - Adicionar Item");
+		                        System.out.println("2 - Listar Itens");
+		                        System.out.println("3 - Calcular Total");
+		                        System.out.println("4 - Remover Item");
+		                        System.out.println("0 - Voltar");
+		                        System.out.print("Escolha uma opção: ");
+
+		                        opcaoItem = scanner.nextInt();
+
+		                        switch (opcaoItem) {
+
+		                            case 1:
+
+		                                System.out.print("ID do item: ");
+		                                int idItem = scanner.nextInt();
+
+		                                System.out.print("ID do produto: ");
+		                                int idProduto = scanner.nextInt();
+
+		                                System.out.print("Quantidade: ");
+		                                int quantidade = scanner.nextInt();
+
+		                                itemService.adicionarItemPedido(idItem, idProduto, quantidade);
+
+		                                break;
+
+		                            case 2:
+
+		                                itemService.listarItensPedido();
+
+		                                break;
+
+		                            case 3:
+
+		                                itemService.calcularTotalPedido();
+
+		                                break;
+
+		                            case 4:
+
+		                                System.out.print("ID do item: ");
+		                                int idRemover = scanner.nextInt();
+
+		                                itemService.removerItemPedido(idRemover);
+
+		                                break;
+
+		                            case 0:
+		                                break;
+
+		                            default:
+		                                System.out.println("Opção inválida!");
+		                        }
+		                    }
+
 		                    break;
 		
 		                case 0:
