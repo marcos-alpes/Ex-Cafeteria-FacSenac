@@ -24,19 +24,16 @@ public class ClienteService {
 
 	}
 	
-	public void buscarClientePorId(int id) {
+	public Cliente buscarClientePorId(int id) {
 
-		for(Cliente c: clientes) {
+	    for (Cliente c : clientes) {
 
-	        if(c.getId() == id) {
-	            c.exibirCliente();
-	            return;
+	        if (c.getId() == id) {
+	            return c;
 	        }
-
 	    }
 
-	    System.out.println("Cliente não encontrado!!!");
-
+	    return null;
 	}
 	
 	public void removerClientePorId(int id) {

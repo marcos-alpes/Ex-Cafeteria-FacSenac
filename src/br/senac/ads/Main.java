@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import br.senac.ads.service.ClienteService;
 import br.senac.ads.service.ItemPedidoService;
+import br.senac.ads.service.PedidoService;
 import br.senac.ads.service.ProdutoService;
 
 public class Main {
@@ -21,6 +22,7 @@ public class Main {
         ClienteService clienteService = new ClienteService();
         ProdutoService produtoService = new ProdutoService();
         ItemPedidoService itemService = new ItemPedidoService(produtoService);
+        PedidoService pedidoService = new PedidoService(clienteService);
 
         // ---------------------------------------------------
         // VARIÁVEL QUE ARMAZENA A OPÇÃO DO MENU
@@ -204,11 +206,72 @@ public class Main {
 
 		                break;
 		
-		                case 3:
-		                    // Menu de pedidos
-		                    // Aqui futuramente serão feitas chamadas
-		                    // para as funções relacionadas a pedidos
-		                    break;
+		            case 3:
+
+		                int opcaoPedido = -1;
+
+		                while (opcaoPedido != 0) {
+
+		                    System.out.println("\n===== MENU PEDIDOS =====");
+		                    System.out.println("1 - Criar Pedido");
+		                    System.out.println("2 - Listar Pedidos");
+		                    System.out.println("3 - Buscar Pedido por ID");
+		                    System.out.println("4 - Cancelar Pedido");
+		                    System.out.println("0 - Voltar");
+		                    System.out.print("Escolha uma opção: ");
+
+		                    opcaoPedido = scanner.nextInt();
+		                    scanner.nextLine();
+
+		                    switch (opcaoPedido) {
+
+		                        case 1:
+
+		                            System.out.print("Digite o ID do pedido: ");
+		                            int idPedido = scanner.nextInt();
+
+		                            System.out.print("Digite o ID do cliente: ");
+		                            int idCliente = scanner.nextInt();
+
+		                            pedidoService.criarPedido(idPedido, idCliente);
+
+		                            break;
+
+		                        case 2:
+
+		                            pedidoService.listarPedidos();
+
+		                            break;
+
+		                        case 3:
+
+		                            System.out.print("Digite o ID do pedido: ");
+		                            int idBusca = scanner.nextInt();
+
+		                            pedidoService.buscarPedido(idBusca);
+
+		                            break;
+
+		                        case 4:
+
+		                            System.out.print("Digite o ID do pedido a cancelar: ");
+		                            int idCancelar = scanner.nextInt();
+
+		                            pedidoService.cancelarPedido(idCancelar);
+
+		                            break;
+
+		                        case 0:
+
+		                            break;
+
+		                        default:
+
+		                            System.out.println("Opção inválida!");
+		                    }
+		                }
+
+		                break;
 		
 		                case 4:
 
