@@ -61,17 +61,6 @@ public class ItemPedidoService {
         System.out.println("Total do pedido: R$ " + total);
     }
 
-    public void removerItemPedido(int idPedido) {
-
-        ItemPedido itemRemover = null;
-
-        for (ItemPedido item : itensPedido) {
-
-            if (item.getIdPedido() == idPedido) {
-                itemRemover = item;
-                break;
-            }
-        }
 
         if (itemRemover != null) {
 
