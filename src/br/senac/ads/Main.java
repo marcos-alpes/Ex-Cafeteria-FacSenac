@@ -3,6 +3,7 @@ package br.senac.ads;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import br.senac.ads.model.Cliente;
 import br.senac.ads.service.ClienteService;
 import br.senac.ads.service.ItemPedidoService;
 import br.senac.ads.service.PedidoService;
@@ -106,7 +107,13 @@ public class Main {
 		                            System.out.print("Digite o ID do cliente: ");
 		                            int idBusca = scanner.nextInt();
 
-		                            clienteService.buscarClientePorId(idBusca);
+		                            Cliente cliente = clienteService.buscarClientePorId(idBusca);
+
+		                            if (cliente != null) {
+		                                cliente.exibirCliente();
+		                            } else {
+		                                System.out.println("Cliente não encontrado.");
+		                            }
 
 		                            break;
 

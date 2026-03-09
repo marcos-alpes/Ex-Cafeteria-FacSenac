@@ -18,10 +18,14 @@ public class ClienteService {
 	
 	public void listarClientes() {
 
-	    for(Cliente c: clientes) {
-	        c.exibirCliente();
+	    if (clientes.isEmpty()) {
+	        System.out.println("Nenhum cliente cadastrado.");
+	        return;
 	    }
 
+	    for (Cliente c : clientes) {
+	        c.exibirCliente();
+	    }
 	}
 	
 	public Cliente buscarClientePorId(int id) {

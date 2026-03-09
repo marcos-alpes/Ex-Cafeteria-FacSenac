@@ -21,24 +21,34 @@ public class ProdutoService {
 	}
 	
 	public void atualizarPreco(int id, double novoPreco) {
-		for(Produto p : produtos) {
-			if(p.getId() == id) {
-				if(novoPreco > 0) {
-					p.setPreco(novoPreco);
-		            System.out.println("Preço atualizado.");
-				}
-			}
-		}
+
+	    Produto produto = buscarProdutoPorId(id);
+
+	    if (produto == null) {
+	        System.out.println("Produto não encontrado.");
+	        return;
+	    }
+
+	    if (novoPreco <= 0) {
+	        System.out.println("Preço inválido.");
+	        return;
+	    }
+
+	    produto.setPreco(novoPreco);
+	    System.out.println("Preço atualizado com sucesso!");
 	}
 	
 	public void removerProduto(int id) {
-	    for(Produto p : produtos) {
-	        if(p.getId() == id) {
-	            produtos.remove(p);
-	            System.out.println("Produto removido.");
-	            break;
-	        }
+
+	    Produto produto = buscarProdutoPorId(id);
+
+	    if (produto == null) {
+	        System.out.println("Produto não encontrado.");
+	        return;
 	    }
+
+	    produtos.remove(produto);
+	    System.out.println("Produto removido com sucesso!");
 	}
 	
 	public static void main(String[]args) {
