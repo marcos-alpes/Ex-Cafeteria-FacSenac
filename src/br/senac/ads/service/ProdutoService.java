@@ -64,4 +64,16 @@ public class ProdutoService {
 		service.listarProdutos();
 
 	}
+	
+	public Produto buscarProdutoPorId(int id) {
+
+        for (Produto p : produtos) {
+
+            if (p.getId() == id) {
+                return p;
+            }
+        }
+
+        return null;
+    }
 }
