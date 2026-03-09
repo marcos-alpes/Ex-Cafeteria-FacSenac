@@ -1,10 +1,15 @@
 package br.senac.ads.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Produto {
 
     private int id;
     private String nome;
     private double preco;
+    
+    List<Produto> produtos = new ArrayList<>();
 
     public Produto(int id, String nome, double preco) {
         this.id = id;
@@ -44,5 +49,17 @@ public class Produto {
         System.out.println("Produto ID: " + id);
         System.out.println("Nome: " + nome);
         System.out.println("Preço: " + preco);
+    }
+    
+    public Produto buscarProdutoPorId(int id) {
+
+        for (Produto p : produtos) {
+
+            if (p.getId() == id) {
+                return p;
+            }
+        }
+
+        return null;
     }
 }

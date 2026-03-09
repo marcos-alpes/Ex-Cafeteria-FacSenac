@@ -42,7 +42,7 @@ public class ItemPedido {
 
     public void exibirItemPedido() {
         System.out.println("Pedido ID: " + idPedido);
-        System.out.println("Produto ID: " + produto);
+        System.out.println("Produto ID: " + produto.getId());
         System.out.println("Quantidade: " + quantidade);
         System.out.println("Preço Unitário: " + precoUnitario);
         System.out.println("Subtotal: " + calcularSubtotal());
